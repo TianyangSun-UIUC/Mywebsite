@@ -1,51 +1,102 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>孙天阳的个人主页</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Frosted Site</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    #intro {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70%;
+      text-align: center;
+      backdrop-filter: blur(15px);
+      background: rgba(255, 255, 255, 0.03);
+      padding: 40px;
+      border-radius: 16px;
+      z-index: 10;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+    body.light #intro {
+      color: #111;
+    }
+    body.dark #intro {
+      color: #fff;
+    }
+    #exploreBtn {
+      margin-top: 20px;
+      padding: 12px 24px;
+      border: none;
+      background: gold;
+      color: black;
+      font-weight: bold;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
 </head>
-<body>
+<body class="dark">
+  <button id="toggleSettings">⚙️</button>
+  <div id="controls" class="hidden">
+    <div class="option-group">
+      <label>Rows:</label>
+      <input type="range" id="rowRange" min="5" max="40" value="40" />
+    </div>
+    <div class="option-group">
+      <label>Cols:</label>
+      <input type="range" id="colRange" min="5" max="40" value="40" />
+    </div>
+    <div class="option-group">
+      <label>Effect Radius:</label>
+      <input type="range" id="radiusRange" min="50" max="500" value="75" />
+    </div>
+    <div class="option-group">
+      <label>Frosted Opacity:</label>
+      <input type="range" id="frostedOpacity" min="0" max="100" value="0" />
+    </div>
+    <div class="option-group">
+      <p>Theme</p>
+      <div class="option-bar">
+        <div data-theme="light" class="option active">Light</div>
+        <div data-theme="dark" class="option">Dark</div>
+      </div>
+    </div>
+    <div class="option-group">
+      <p>Segment Values (X / Y)</p>
+      <div id="xyPad">
+        <div class="axis x"></div>
+        <div class="axis y"></div>
+        <div id="xyCursor"></div>
+      </div>
+    </div>
+  </div>
 
-<nav>
-<ul>
-<li><a href=" ">首页</a ></li>
-<li><a href="#about">关于我</a ></li>
-<li><a href="#contact">联系我</a ></li>
-</ul>
-</nav>
+  <div id="intro">
+    <h1>
+      我的资料吗？想要的话可以全部告诉你。<br />
+      去找出来吧，我所有的一切都在那里！
+    </h1>
+    <button id="exploreBtn">【探索】</button>
+  </div>
 
-<section id="home">
-<h1>你好，我是孙天阳</h1>
-<p>欢迎来到我的个人主页！</p >
-</section>
 
-<section id="about">
-<h2>关于我</h2>
-<p>我是一名正在学习网页开发的学生，喜欢编程和设计网页。</p > <br>
-<p>毕业于 伊利诺伊大学厄巴纳-香槟分校 08/2021-05/2025</p>
-</section>
+  <canvas id="bgCanvas"></canvas>
 
-<section id="skills">
-<h2>我的技能</h2>
-<ul>
-<li>HTML / CSS / JavaScript</li>
-<li>Python / C++</li>
-<li>网页设计与动画</li>
-<li>UE5</li>
-</ul>
-</section>
+  <script src="script.js"></script>
+  <script>
+    const intro = document.getElementById('intro');
+    const exploreBtn = document.getElementById('exploreBtn');
+    const frosted = document.getElementById('frostedContent');
 
-<section id="contact">
-<h2>联系我</h2>
-<p> 邮箱: <a href="mailto:tys078819@gmail.com">tys078819@gmail.com</a ></p >
-<p> GitHub: <a href="https://github.com/TianyangSun-UIUC" target="_blank">https://github.com/TianyangSun-UIUC</a ></p >
-</section>
-
-<footer>
-<p> 2025 孙天阳 | 版权所有</p >
-</footer>
-
+    exploreBtn.addEventListener('click', () => {
+      intro.style.display = 'none';
+      frosted.style.display = 'none';
+      // 后续可以在这里加入游戏逻辑
+    });
+  </script>
 </body>
 </html>
